@@ -5,7 +5,7 @@ import { getCsrfToken } from "next-auth/react"
 import Link from "next/link"
 import { NextApiResponse, NextApiRequest } from "next"
 
-export default function sign({ providers, csrfToken}) {
+export default function sign({ providers}) {
   const { data: session } = useSession()
   if (session) {
     console.log({session});
@@ -21,7 +21,7 @@ export default function sign({ providers, csrfToken}) {
         {/* <button onClick={() => signOut()}>Sign out</button> */}
         <div className="max-w-5xl mx-auto text-center mt-10 items-center text-2xl">
         <Link href="/"><a className=" px-5 py-1 bg-blue-400 hover:bg-gray-800 transition-all ease-in-out rounded shadow-md"
-                        >Homepage</a></Link>
+                      >Homepage</a></Link>
         </div>
 
       </>

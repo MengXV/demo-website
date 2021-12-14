@@ -3,7 +3,6 @@ import React from 'react'
 function Footer() {
     return (
         <div className="footer-title">
-
             <div className="text-xs md:text-md lg:text-lg  font-semibold text-white">
                 <h1 className="e-sport">E-Sport.</h1>
             </div>
