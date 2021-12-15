@@ -1,9 +1,8 @@
-import Facebook from "next-auth/providers/facebook"
-import Google from "next-auth/providers/google"
+
 import { getProviders ,useSession, signIn, signOut } from "next-auth/react"
-import { getCsrfToken } from "next-auth/react"
+
 import Link from "next/link"
-import { NextApiResponse, NextApiRequest } from "next"
+
 
 export default function sign({ providers}) {
   const { data: session } = useSession()
@@ -60,30 +59,30 @@ export default function sign({ providers}) {
                 </button>
         </div>
 
-        <form class=" rounded   w-96 mx-auto">
-    <div class="mb-4">
-      <label class="block text-gray-700 text-md tracking-wider font-semibold mb-2" for="email">
+        <form className=" rounded   w-96 mx-auto">
+    <div className="mb-4">
+      <label className="block text-gray-700 text-md tracking-wider font-semibold mb-2" for="email">
         Email Address:
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Email Address"/>
+      <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Email Address"/>
     </div>
-    <div class="mb-6">
-      <label class="block text-gray-700 text-md tracking-wider font-semibold mb-2" for="password">
+    <div className="mb-6">
+      <label className="block text-gray-700 text-md tracking-wider font-semibold mb-2" for="password">
         Password:
       </label>
-      <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 text-xs leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************"/>
-      <p class="text-red-500 text-xs italic tracking-wide">Please choose a password.</p>
+      <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 text-xs leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************"/>
+      <p className="text-red-500 text-xs italic tracking-wide">Please choose a password.</p>
     </div>
     <div className="flex items-center justify-end mb-4 ">
-    <a class="inline-block align-baseline tracking-wider text-xs text-blue-500 hover:text-blue-800" href="#">
+    <a className="inline-block align-baseline tracking-wider text-xs text-blue-500 hover:text-blue-800" href="#">
         Forgot Password?
       </a>
     </div>
-    <div class="flex items-center justify-center space-x-2 mb-4">
-      <button class="bg-blue-500 hover:bg-gray-700 text-white font-semibold tracking-wider uppercase py-2 w-full rounded focus:outline-none focus:shadow-outline" type="button">
+    <div className="flex items-center justify-center space-x-2 mb-4">
+      <button className="bg-blue-500 hover:bg-gray-700 text-white font-semibold tracking-wider uppercase py-2 w-full rounded focus:outline-none focus:shadow-outline" type="button">
         Sign In
       </button>
-      <button class="bg-gray-700 hover:bg-blue-500 text-white font-semibold tracking-wider uppercase py-2 w-full rounded focus:outline-none focus:shadow-outline" type="button">
+      <button className="bg-gray-700 hover:bg-blue-500 text-white font-semibold tracking-wider uppercase py-2 w-full rounded focus:outline-none focus:shadow-outline" type="button">
         Create Account
       </button>
      
