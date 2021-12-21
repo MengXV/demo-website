@@ -3,7 +3,6 @@ import NavbarLogo from '../components/NavbarLogo'
 import Header from '../components/Header'
 import { Menu } from '../components/Menu'
 import FeaturedPage from '../components/FeaturedPage'
-import EventTest from '../components/EventTest'
 
 function featured() {
 
@@ -27,10 +26,7 @@ function featured() {
                 </div>
             </div>
 
-            <div>
-                <EventTest/>
-            </div>
-
+            
 
         </div>
     )

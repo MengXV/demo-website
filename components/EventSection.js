@@ -5,7 +5,11 @@ import EventUpcoming from './EventUpcoming'
 
 function EventSection() {
 
-   
+   const [ showMe, setShowMe] = useState(false);
+
+   function toggle(){
+       setShowMe(!showMe);
+   }
 
     return (
         <div>
@@ -19,7 +23,8 @@ function EventSection() {
                     <button className="ongoing-btn font-semibold uppercase tracking-widest text-center">Ongoing</button>        
                 </div>
                 <div className="border-r border-gray-500 pl-2 pr-1">
-                    <button  className="upcoming-btn font-semibold uppercase tracking-widest" onClick={() => setShow(show)}>Upcoming</button>            
+                    <button  className="upcoming-btn font-semibold uppercase tracking-widest" >Upcoming</button> 
+                      
                 </div>
                 <div className="border-r border-gray-500 pl-2 pr-1">
                     <button  className="past-btn font-semibold uppercase tracking-widest">Past</button>            

@@ -46,9 +46,9 @@ export default function Home() {
               </div>
         </div>
     </div>
-
+      <div className="">
       <Carousel/>
-
+      </div>
       <div className="w-full mx-auto mt-20 pt-8 bg-gray-900">
         <div className="max-w-5xl mx-auto">
         <VideoSection/>

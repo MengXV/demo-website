@@ -1,87 +1,131 @@
-import React from 'react'
-import Link from 'next/link';
+
+import { getProviders ,useSession, signIn, signOut } from "next-auth/react"
+import Link from "next/link"
+import { getCsrfToken } from "next-auth/react"
+import Image from "next/image"
 
 
-
-const Login = () => {
-
+export default function sign({ providers, csrfToken}) {
+  const { data: session } = useSession()
+  
+  if (session) {
+    console.log({session})
     
-
-
     return (
-        <div className="w-full mx-auto text-white">
-            <div className="max-w-5xl mx-auto ">
-                <div className="flex items-center justify-center mx-20 mb-8 mt-12">
-                    <img src="EGU-logo.png" className="w-14"/>
+    
+      <>
+        <div className="text-white max-w-5xl mx-auto text-center flex justify-center items-baseline space-x-4 mt-10 ">
+         <h1 className="text-3xl">Hello,</h1><span className="text-5xl underline font-semibold uppercase">{session.user.name}</span> <br />
+        </div>
+        
+       
+
+        <div className="max-w-5xl mx-auto ">
+            <div className="max-w-md mx-auto bg-white mt-10 rounded">
+              <div className="text-center font-semibold tracking-wider text-3xl py-2">
+              <h1>Profile</h1>
+              </div>
+              <form>
+                <div className="mt-4">
+                <label className="m-2 ml-16 text-xl">Name: <span className="font-semibold tracking-wider">{session.user.name}</span></label>
                 </div>
-                <div className="text-white tracking-wider max-w-md mx-auto text-center mb-8">
-                    <h1 className="text-2xl">Sign in to your account</h1>
-                    <p>Or <span className="text-blue-400 cursor-pointer">create a new account</span></p>
+                <div className="mt-4">
+                <label className="m-2 ml-16 text-xl">Email: <span className="font-semibold tracking-wider">{session.user.email}</span></label>
                 </div>
-                <div className="max-w-md mx-auto">
-                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 tracking-wider">
+                <div className="mt-4">
+                <label className="m-2 ml-16 text-xl">Favourite Game:</label>
+                </div>
+                <div className="mt-4">
+                <label className="m-2 ml-16 text-xl">Team Name:</label>
+                </div>
+                <div className="mt-4">
+                <label className="m-2 ml-16 text-xl">University:</label>
+                </div>
+                <div className="mt-4">
+                <label className="m-2 ml-16 text-xl">Gender:</label>
+                </div>
+              </form>
 
-                <div className="flex items-center justify-center mb-4">
-                    <button className="flex items-center justify-center space-x-4 w-full bg-blue-800 hover:bg-blue-400 uppercase 
-                                     text-white font-semibold hover:text-white   px-4 py-2 
-                                        border border-blue-500 hover:border-transparent rounded tracking-widest">
-                                        <img src="facebook-icon.svg" className="w-8"/>
-                                        <p className="text-xs">Sign in with Facebook</p>
-                    </button>
-                    </div>
+                <div className="max-w-5xl mx-auto text-center mt-10 items-center font-semibold tracking-wider uppercase">
+        <Link href="/"><a className=" px-5 py-2 bg-blue-400 hover:bg-gray-800 transition-all ease-in-out rounded shadow-md"
+                      >Homepage</a></Link>
+        </div> 
 
+              <div className="text-center flex justify-center items-center py-4">
+              <button className="bg-blue-400 px-6 py-1 rounded text-black uppercase tracking-wider font-semibold"
+              onClick={() => signOut({ callbackUrl: 'http://localhost:3000/login' })}>Sign out</button>
+              </div>
+            </div>
+        </div>
 
-                    <div className="flex items-center justify-center mb-4">
-                    <button className="flex items-center justify-center space-x-4 w-full bg-red-500 hover:bg-blue-400 uppercase 
-                                     text-white font-semibold hover:text-white   px-4 py-2 
-                                        border border-blue-500 hover:border-transparent rounded tracking-widest">
-                                        <img src="google-icon.svg" className="w-8"/>
-                                        <p className="text-xs">Sign in with Google</p>
-                    </button>
-                    </div>
-
-                    <div className="mb-4">
-                    <label className="block text-gray-700  font-bold mb-2 text-lg" for="email">
-                    Email Address:
-                    </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
-                                  leading-tight focus:outline-none focus:shadow-outline" 
-                                  id="email" type="text" placeholder="Email">
-                    </input>
-                    </div>
-
-                    <div className="mb-4">
-                    <label className="block text-gray-700  font-bold mb-2 text-lg" for="password">
-                    Password:
-                    </label>
-                    <input className="shadow appearance-none border  rounded w-full py-2 px-3 
-                                text-gray-700 mb-3 leading-snug focus:outline-none focus:shadow-outline" 
-                                id="password" type="password" placeholder="******************">
-                    </input>
-                    <p className="text-gray-700 text-xs italic">Please choose a password.</p>
-                    </div>
-
-                    <div className="flex items-center justify-between mb-4 text-xs">
-                        <div className="space-x-2 flex items-center">
-                        <input className="cursor-pointer" type="checkbox"></input>
-                        <label>Remember me</label>
-                        </div>
-                        <div className="cursor-pointer text-blue-600">
-                            <p>Forgot your password?</p>
-                        </div>
-                    </div>
+      </>
+    )
+  }
+  return (
+    
+    <>
+    
+    <div className="w-full mx-auto text-white">
+        <div className="max-w-5xl mx-auto  ">
+            <div className="flex justify-center items-center mb-8 mt-12 mx-20">
+                <img src="EGU-logo.png" className="w-14"/>
+            </div>
+            <div className="tracking-wider  max-w-md mx-auto text-center mb-8">
+                <h1 className="text-3xl font-semibold ">Sign in to your account</h1>
+                <p className="font-semibold tracking-widest">Or <span className="font-semibold tracking-widest text-blue-500">Create a new account</span></p>
+            </div>
 
 
-                    <div className="flex justify-between items-center space-x-2 mb-4">
-                    <button className=" bg-blue-800 hover:bg-blue-400 uppercase text-white font-semibold hover:text-white w-48 justify-center px-4 py-1 
-                                    border border-blue-500 hover:border-transparent rounded tracking-widest" type="submit" >Login</button>
+      <div className="max-w-md mx-auto bg-white flex flex-col gap-y-4 justify-center items-center pt-4 pb-4 rounded">
+          <button className="flex justify-center items-center space-x-4 bg-red-600 hover:bg-red-300 uppercase shadow-sm 
+                            text-white font-semibold hover:text-white w-96 px-4 py-2 
+                             hover:border-transparent rounded tracking-widest" 
+                  onClick={() => signIn('google')}>
+                    <img src="google-icon.svg" className="w-8"/>
+                        <h1 className="pr-4">Sign in with Google</h1>
+           </button>
 
-                    <button className=" bg-gray-900 hover:bg-blue-400 uppercase text-white font-semibold hover:text-white w-48 justify-center px-4 py-1 
-                                    border border-blue-500 hover:border-transparent rounded tracking-widest">Create Account</button>
+          <div className="">
+              <button className="flex justify-center items-center space-x-4 bg-blue-700 hover:bg-blue-400 uppercase 
+                              text-white font-semibold hover:text-white w-96 px-4 py-3 shadow-sm
+                                border border-blue-500 hover:border-transparent rounded tracking-widest " 
+                      onClick={() => signIn('facebook')}>
+                        <img src="facebook-icon.svg" className="w-6 "/>
+                          <h1 className="">Sign in with Facebook</h1>
+                </button>
+        </div>
 
-                    </div>
+        <form className=" rounded   w-96 mx-auto"  method="post" action="/api/auth/callback/credentials">
+          <input name="csrfToken" type="hidden" defaultValue={csrfToken}/>
+    <div className="mb-4">
+      <label className="block text-gray-700 text-md tracking-wider font-semibold mb-2" htmlFor="email">
+        Email Address:
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="email" id="email" type="email" placeholder="Email Address"/>
+      </label>
+    </div>
+    <div className="mb-6">
+      <label className="block text-gray-700 text-md tracking-wider font-semibold mb-2" htmlFor="password">
+        Password:
+      </label>
+      <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 text-xs leading-tight focus:outline-none focus:shadow-outline" name="password" id="password" type="password" placeholder="******************"/>
+      <p className="text-red-500 text-xs italic tracking-wide">Please choose a password.</p>
+    </div>
+    <div className="flex items-center justify-end mb-4 ">
+    <a className="inline-block align-baseline tracking-wider text-xs text-blue-500 hover:text-blue-800" href="#">
+        Forgot Password?
+      </a>
+    </div>
+    <div className="flex items-center justify-center space-x-2 mb-4">
+      <button type="submit" className="bg-blue-500 hover:bg-gray-700 text-white font-semibold tracking-wider uppercase py-2 w-full rounded focus:outline-none focus:shadow-outline">
+        Sign In
+      </button>
+      <Link href="/signup"><button className="bg-gray-700 hover:bg-blue-500 text-white font-semibold tracking-wider uppercase py-2 w-full rounded focus:outline-none focus:shadow-outline" type="button">
+        Create Account
+      </button></Link>
+     
+    </div>
 
-                    <div className="flex items-center justify-center space-x-2 mt-6 cursor-pointer">
+    <div className="flex items-center justify-center space-x-2 cursor-pointer">
                     <Link href="/index">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" 
                         className="svg-inline--fa fa-arrow-left w-3 fill-current text-blue-600" 
@@ -95,20 +139,37 @@ const Login = () => {
                     </Link>
 
                     </div>
-                    
-                   
-                  
-                </form>
-                </div>
-            </div>
+  </form>
+
+
+
         </div>
 
-        
-   
-    );
 
 
+
+
+
+
+      </div>
+
+
+      <div>
+
+      </div>
+
+      </div>
+      
+    </>
+  )
 }
 
+export async function getServerSideProps(context) {
+    const providers = await getProviders()
 
-export default Login
+    return {
+      props: { providers, 
+        csrfToken: await getCsrfToken(context)
+      },
+    }
+  }
